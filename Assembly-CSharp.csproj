@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\direction.cs" />
     <Compile Include="Assets\Script\inventory.cs" />
     <Compile Include="Assets\Script\item.cs" />
+    <Compile Include="Assets\Script\machine.cs" />
     <Compile Include="Assets\Script\moveCam.cs" />
     <Compile Include="Assets\Script\objPlace.cs" />
     <Reference Include="UnityEngine">

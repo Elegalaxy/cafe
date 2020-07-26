@@ -6,10 +6,16 @@ TagManager:
   tags:
   - Left
   - Right
-  - Circle
-  - Square
   - Inventory
   - Bin
+  - CappuCup
+  - EspCup
+  - LatteCup
+  - Mug
+  - TallGlass
+  - ThickGlass
+  - Handle
+  - Grinder
   layers:
   - Default
   - TransparentFX

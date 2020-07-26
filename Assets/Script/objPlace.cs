@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class objPlace : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class objPlace : MonoBehaviour
 
     private void Start()
     {
+        place = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<inventory>();
     }
     private void OnMouseOver()
@@ -18,14 +20,13 @@ public class objPlace : MonoBehaviour
         {
             if (inventory.item.GetComponent<SpriteRenderer>().sprite != null) //if hand got thing
             {
-                if (place.sprite != null)
+                if (tag == "Handle" && inventory.item.GetComponent<SpriteRenderer>().sprite.name != "Handle")
                 {
-                    Debug.Log("The place is full");
+                    Debug.Log("Wrong item");
                 }
                 else
                 {
-                    place.sprite = inventory.getItem(); //place item
-                    inventory.item.GetComponent<SpriteRenderer>().sprite = null; //set our hand to nothing
+                    manageThing();
                 }
             }
             else //if hand got nothing
@@ -34,5 +35,24 @@ public class objPlace : MonoBehaviour
                 place.sprite = null;
             }
         }
+    }
+
+    public void changeStat(Sprite changeImg)
+    {
+        place.sprite = changeImg;
+    }
+
+    void manageThing()
+    {
+        if (place.sprite != null)
+        {
+            Debug.Log("The place is full");
+        }
+        else
+        {
+            place.sprite = inventory.getItem(); //place item
+            inventory.item.GetComponent<SpriteRenderer>().sprite = null; //set our hand to nothing
+        }
+
     }
 }

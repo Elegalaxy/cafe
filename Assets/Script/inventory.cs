@@ -8,6 +8,10 @@ public class inventory : MonoBehaviour
     public GameObject item;
     public Camera cam;
 
+    public Sprite handleEmpty;
+    public Sprite handleWithCoffee;
+    //public Sprite handleWithOldCoffee;
+
     void Update()
     {
         Vector3 dis = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -39,5 +43,10 @@ public class inventory : MonoBehaviour
     public void clearItem()
     {
         item.GetComponent<SpriteRenderer>().sprite = null;
+    }
+
+    public void changeSprite(Sprite img)
+    {
+        item.GetComponent<SpriteRenderer>().sprite = img;
     }
 }

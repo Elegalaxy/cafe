@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\OptionMenu.cs" />
+    <Compile Include="Assets\Script\PauseMenu.cs" />
     <Compile Include="Assets\Script\Scenes.cs" />
     <Compile Include="Assets\Script\direction.cs" />
     <Compile Include="Assets\Script\inventory.cs" />

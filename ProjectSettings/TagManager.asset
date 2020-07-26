@@ -8,6 +8,8 @@ TagManager:
   - Right
   - Circle
   - Square
+  - Inventory
+  - Bin
   layers:
   - Default
   - TransparentFX

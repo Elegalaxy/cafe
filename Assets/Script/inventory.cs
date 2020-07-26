@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class inventory : MonoBehaviour
 {
@@ -16,11 +17,27 @@ public class inventory : MonoBehaviour
 
     public void clickItem(Sprite itemImg)
     {
-        item.GetComponent<SpriteRenderer>().sprite = itemImg;
+        if (item.GetComponent<SpriteRenderer>().sprite == null)
+        {
+            item.GetComponent<SpriteRenderer>().sprite = itemImg;
+        }
+        else if (item.GetComponent<SpriteRenderer>().sprite == itemImg)
+        {
+            item.GetComponent<SpriteRenderer>().sprite = null;
+        }
+        else
+        {
+            Debug.Log("hand is full");
+        }
     }
 
     public Sprite getItem()
     {
         return item.GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public void clearItem()
+    {
+        item.GetComponent<SpriteRenderer>().sprite = null;
     }
 }

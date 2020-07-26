@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class item : MonoBehaviour
 {
-    public inventory inventory;
-    private void OnMouseEnter()
+    inventory inventory;
+    private void Start()
     {
-        Debug.Log(tag);
+        inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<inventory>();
     }
 
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
+            if(gameObject.tag != "Bin")
+            {
+                inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
+            }
+            else
+            {
+                inventory.clearItem();
+            }
+            //Debug.Log(tag);
         }
     }
 }

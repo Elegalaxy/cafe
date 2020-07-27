@@ -5,58 +5,135 @@ using UnityEngine.UIElements;
 
 public class machine : MonoBehaviour
 {
-    string machineName;
-    int holdNum;
+    public spriteManager spriteManager;
 
-    //grinder
-    bool isGrind;
-    bool isHandle;
-    float grindTime;
+    public string machineName;
+    GameObject[] holder;
 
-    public objPlace[] holder;
-    public Sprite grinded;
+    public bool isUsing;
+    public bool isOperateSingle;
+    public bool isOperateDouble;
+    public bool isHandle;
+
+    float operateTime;
+    int indNum;
+    float orgOperateTime = 3f;
+
+    //Espresso
+    public bool isMilk;
+    bool isPitcher;
+    float milkTime;
+    float orgMilkTime = 4f;
 
     void Start()
     {
         machineName = gameObject.tag;
-        holdNum = holder.Length;
+        indNum = transform.childCount; //get child item num
 
-        if (machineName == "Grinder")
+        isUsing = false;
+        isHandle = false;
+        isOperateSingle = false; //single and double shot
+        isOperateDouble = false;
+        isMilk = false;
+
+        operateTime = orgOperateTime;
+        milkTime = orgMilkTime;
+
+        holder = new GameObject[indNum]; //initial holder array
+
+        for (int i = 0; i < indNum; i++)
         {
-            grindTime = 3f;
-            isGrind = false;
-            isHandle = false;
+            holder[i] = transform.GetChild(i).gameObject;
         }
     }
 
     private void Update()
     {
-        if (holder[0].place.sprite != null) //need to change to check by name
+        if (machineName == "Grinder") //if grinder
         {
-            isGrind = true;
-            isHandle = true;
-        }
-        if (isHandle && isGrind)
-        {
-            if(grindTime > 0)
+            if (holder[0].GetComponent<objPlace>().place.sprite != null)
             {
-                grindTime -= Time.deltaTime;
-                Debug.Log(grindTime);
+                if (holder[0].GetComponent<objPlace>().place.sprite.name == "Handle") //if have handle
+                {
+                    isHandle = true;
+                }
             }
-            else
+
+            if (isHandle)
             {
-                holder[0].GetComponent<objPlace>().changeStat(grinded);
+                if (isOperateSingle && operateTime > 0) //single shot
+                {
+                    isUsing = true;
+                    operateTime -= Time.deltaTime;
+                }
+                else if (isOperateDouble && operateTime > -2f) //double shot
+                {
+                    isUsing = true;
+                    operateTime -= Time.deltaTime;
+                }
+                else if (operateTime <= -2f || operateTime <= 0) //when finish grind
+                {
+                    holder[0].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Handle with coffee"));
+                    gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Grinding Machine");
+                    isHandle = false;
+                    isOperateSingle = false;
+                    isOperateDouble = false;
+                    isUsing = false;
+                    operateTime = orgOperateTime;
+                }
+            }
+        }
+        else if (machineName == "EspMachine") //if Espresso machine
+        {
+            if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Espresso Machine Handle") //have handle
+            {
+                isHandle = true;
+            }
+
+            if (isOperateSingle && operateTime > 0) //single shot
+            {
+                isUsing = true;
+                operateTime -= Time.deltaTime;
+            }
+            else if (isOperateDouble && operateTime > -2f) //double shot
+            {
+                isUsing = true;
+                operateTime -= Time.deltaTime;
+            }
+            else if (operateTime <= -2f || operateTime <= 0) //Espress finish
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Espresso Machine Handle");
                 isHandle = false;
-                isGrind = false;
+                isOperateSingle = false;
+                isOperateDouble = false;
+                isUsing = false;
+                operateTime = orgOperateTime;
             }
-        }
-    }
 
-    public void operate()
-    {
-        if(machineName == "Grinder")
-        {
+            //milk
+            if (holder[0].GetComponent<objPlace>().place.sprite != null)
+            {
+                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher") //if have handle
+                {
+                    isPitcher = true;
+                }
 
+                if (isPitcher)
+                {
+                    if (milkTime > 0) //milk time
+                    {
+                        isUsing = true;
+                        milkTime -= Time.deltaTime;
+                    }
+                    else if (milkTime <= 0) //when finish steam
+                    {
+                        holder[1].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
+                        isPitcher = false;
+                        isUsing = false;
+                        milkTime = orgMilkTime;
+                    }
+                }
+            }
         }
     }
 }

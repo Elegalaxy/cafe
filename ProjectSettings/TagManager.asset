@@ -16,6 +16,10 @@ TagManager:
   - ThickGlass
   - Handle
   - Grinder
+  - EspMachine
+  - SpriteManager
+  - Milk
+  - PlasticCup
   layers:
   - Default
   - TransparentFX

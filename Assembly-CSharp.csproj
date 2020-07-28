@@ -67,11 +67,16 @@
     <Compile Include="Assets\Script\OptionMenu.cs" />
     <Compile Include="Assets\Script\PauseMenu.cs" />
     <Compile Include="Assets\Script\Scenes.cs" />
+    <Compile Include="Assets\Script\button.cs" />
     <Compile Include="Assets\Script\direction.cs" />
     <Compile Include="Assets\Script\inventory.cs" />
     <Compile Include="Assets\Script\item.cs" />
+    <Compile Include="Assets\Script\machine.cs" />
     <Compile Include="Assets\Script\moveCam.cs" />
     <Compile Include="Assets\Script\objPlace.cs" />
+    <Compile Include="Assets\Script\orderClass.cs" />
+    <Compile Include="Assets\Script\particle.cs" />
+    <Compile Include="Assets\Script\spriteManager.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/2019.4.1f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

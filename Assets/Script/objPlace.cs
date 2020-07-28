@@ -42,7 +42,8 @@ public class objPlace : MonoBehaviour
                         }
                         else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher") //if it is Pitcher
                         {
-                            changeStat(spriteManager.getSprite("Pitcher in steam"));
+                            //changeStat(spriteManager.getSprite("Pitcher in steam"));
+                            changeStat(spriteManager.getSprite("Pitcher"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = null;
                         }
                     }
@@ -53,6 +54,11 @@ public class objPlace : MonoBehaviour
                 }
                 else
                 {
+                    if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher with milk" && inventory.isSmoke && inventory.isHanding)
+                    {
+                        inventory.transform.GetChild(1).SetParent(gameObject.transform);
+                        inventory.isHanding = false;
+                    }
                     manageThing();
                 }
             }
@@ -67,10 +73,16 @@ public class objPlace : MonoBehaviour
                             manageThing(spriteManager.getSprite("Espresso Machine"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Handle old coffee");
                         }
+                        else if (parentMachine.tag == "EspMachine")
+                        {
+                            GameObject smoke = transform.GetChild(transform.childCount - 1).gameObject;
+                            Destroy(smoke);
+                            inventory.startSmoke();
+                            takeBack();
+                        }
                         else
                         {
-                            inventory.item.GetComponent<SpriteRenderer>().sprite = place.sprite; //take item back
-                            place.sprite = null;
+                            takeBack();
                         }
                     }
                     else
@@ -80,8 +92,12 @@ public class objPlace : MonoBehaviour
                 }
                 else
                 {
-                    inventory.item.GetComponent<SpriteRenderer>().sprite = place.sprite; //take item back
-                    place.sprite = null;
+                    if (place.sprite.name == "Pitcher with milk" && inventory.isSmoke && !inventory.isHanding)
+                    {
+                        place.gameObject.transform.parent.transform.GetChild(1).SetParent(inventory.transform);
+                        inventory.isHanding = true;
+                    }
+                    takeBack();
                 }
             }
         }
@@ -111,4 +127,9 @@ public class objPlace : MonoBehaviour
         inventory.item.GetComponent<SpriteRenderer>().sprite = null; //set our hand to nothing
     }
 
+    void takeBack()
+    {
+        inventory.item.GetComponent<SpriteRenderer>().sprite = place.sprite; //take item back
+        place.sprite = null;
+    }
 }

@@ -8,11 +8,8 @@ public class item : MonoBehaviour
     spriteManager spriteManager;
     inventory inventory;
 
-    bool handleFull;
-
     private void Start()
     {
-        handleFull = false;
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<inventory>();
         spriteManager = GameObject.FindGameObjectWithTag("SpriteManager").GetComponent<spriteManager>();
     }
@@ -36,7 +33,6 @@ public class item : MonoBehaviour
                 {
                     if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Handle old coffee")
                     {
-                        handleFull = false;
                         inventory.changeSprite(spriteManager.getSprite("Handle"));
                     }
                     else if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Handle" || inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher" || inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Plastic Cup")

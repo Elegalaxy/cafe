@@ -21,7 +21,10 @@ public class machine : MonoBehaviour
 
     //Espresso
     public bool isMilk;
-    bool isPitcher;
+    public bool milkBtn;
+    public bool isPitcher;
+    public ParticleSystem smoke;
+
     float milkTime;
     float orgMilkTime = 4f;
 
@@ -35,6 +38,8 @@ public class machine : MonoBehaviour
         isOperateSingle = false; //single and double shot
         isOperateDouble = false;
         isMilk = false;
+        milkBtn = false;
+        isPitcher = false;
 
         operateTime = orgOperateTime;
         milkTime = orgMilkTime;
@@ -111,25 +116,27 @@ public class machine : MonoBehaviour
             }
 
             //milk
-            if (holder[0].GetComponent<objPlace>().place.sprite != null)
+            if (holder[1].GetComponent<objPlace>().place.sprite != null)
             {
-                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher") //if have handle
+                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher") //if have pitcher
                 {
                     isPitcher = true;
                 }
 
                 if (isPitcher)
                 {
-                    if (milkTime > 0) //milk time
+                    if (milkTime > 0 && milkBtn) //milk time
                     {
-                        isUsing = true;
+                        isMilk = true;
                         milkTime -= Time.deltaTime;
                     }
                     else if (milkTime <= 0) //when finish steam
                     {
                         holder[1].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
+                        Instantiate(smoke, holder[1].transform);
                         isPitcher = false;
-                        isUsing = false;
+                        isMilk = false;
+                        milkBtn = false;
                         milkTime = orgMilkTime;
                     }
                 }

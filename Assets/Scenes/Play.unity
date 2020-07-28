@@ -931,6 +931,9 @@ MonoBehaviour:
   isOperateDouble: 0
   isHandle: 0
   isMilk: 0
+  milkBtn: 0
+  isPitcher: 0
+  smoke: {fileID: 19800000, guid: 5a97962f7d5ba4df0823334b52c7c02c, type: 3}
 --- !u!1 &396983575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1180,49 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &447140141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 447140143}
+  - component: {fileID: 447140142}
+  m_Layer: 0
+  m_Name: Order
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &447140142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447140141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914ce8fffb789eb4689ca5121089c6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &447140143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447140141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -51.740253, y: -2.4919004, z: -4.5983305}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,6 +1724,66 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &723587593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 723587594}
+  - component: {fileID: 723587596}
+  - component: {fileID: 723587595}
+  m_Layer: 0
+  m_Name: MilkButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &723587594
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723587593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.995, y: -2.112, z: 0}
+  m_LocalScale: {x: 0.59, y: 0.59, z: 0.59}
+  m_Children: []
+  m_Father: {fileID: 1710562648}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &723587595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723587593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88a923c48296774e81b50b21535243f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &723587596
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 723587593}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &735991980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2319,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8bba73a7db3923a45b84a579bbc7db11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2238,10 +2344,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.048490524, y: -0.0024251938}
+  m_Offset: {x: 0.048490524, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.3}
+    pivot: {x: 0.5, y: 0.21}
     oldSize: {x: 1.92, y: 1.92}
     newSize: {x: 1.92, y: 1.92}
     adaptiveTilingThreshold: 0.5
@@ -3036,7 +3142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1123855085}
+  smoke: {fileID: 19800000, guid: ada6385dc434e6e45992c10da04fc342, type: 3}
   cam: {fileID: 519420031}
+  dis: {x: 0, y: 0, z: 0}
+  isSmoke: 0
+  isHanding: 0
 --- !u!4 &1343840257
 Transform:
   m_ObjectHideFlags: 0
@@ -3078,7 +3188,7 @@ Transform:
   m_GameObject: {fileID: 1400112707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 4, y: 3.2, z: 4}
   m_Children: []
   m_Father: {fileID: 101872771}
   m_RootOrder: 0
@@ -3471,6 +3581,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8f96695d029fece468296bc04fa0b8de, type: 3}
   - {fileID: 21300000, guid: 8bba73a7db3923a45b84a579bbc7db11, type: 3}
   - {fileID: 21300000, guid: d55e256d7bb066f48b7ba1d94ad55dc5, type: 3}
+  - {fileID: 21300000, guid: 7139d8e2794a84748a523b4460fafd56, type: 3}
 --- !u!4 &1629395604
 Transform:
   m_ObjectHideFlags: 0
@@ -3937,6 +4048,7 @@ Transform:
   - {fileID: 1917141796}
   - {fileID: 653428512}
   - {fileID: 1775132761}
+  - {fileID: 723587594}
   m_Father: {fileID: 150705455}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3959,6 +4071,9 @@ MonoBehaviour:
   isOperateDouble: 0
   isHandle: 0
   isMilk: 0
+  milkBtn: 0
+  isPitcher: 0
+  smoke: {fileID: 19800000, guid: 5a97962f7d5ba4df0823334b52c7c02c, type: 3}
 --- !u!212 &1710562650
 SpriteRenderer:
   m_ObjectHideFlags: 0

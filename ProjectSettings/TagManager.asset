@@ -20,6 +20,10 @@ TagManager:
   - SpriteManager
   - Milk
   - PlasticCup
+  - Hot Water
+  - Milk Button
+  - Placer
+  - MusicManager
   layers:
   - Default
   - TransparentFX

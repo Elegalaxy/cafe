@@ -25,6 +25,18 @@ public class item : MonoBehaviour
                     inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                     gameObject.GetComponent<SpriteRenderer>().sprite = null;
                 }
+                else if (gameObject.name == "plate")
+                {
+                    if(transform.GetChild(0).GetComponent<objPlace>().place.sprite != null)
+                    {
+                        inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
+                    }
+                    else
+                    {
+                        //inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
+                    }
+                }
+
                 else if (gameObject.tag != "Bin")
                 {
                     inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);

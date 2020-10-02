@@ -25,7 +25,7 @@ public class objPlace : MonoBehaviour
         {
             if (inventory.item.GetComponent<SpriteRenderer>().sprite != null) //if hand got thing
             {
-                if(tag != "Untagged")
+                if(tag != "Untagged" && transform.parent.tag != "Untagged")
                 {
                     if (parentMachine.tag == "Grinder") //if this is grinder
                     {
@@ -42,10 +42,45 @@ public class objPlace : MonoBehaviour
                         }
                         else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher") //if it is Pitcher
                         {
-                            //changeStat(spriteManager.getSprite("Pitcher in steam"));
-                            changeStat(spriteManager.getSprite("Pitcher"));
+                            changeStat(spriteManager.getSprite("Pitcher in steam"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = null;
                         }
+                        else if (tag == "Hot Water") //if it is Long Black
+                        {
+                            switch (inventory.item.GetComponent<SpriteRenderer>().sprite.name)
+                            {
+                                case "SIM":
+                                    changeStat(spriteManager.getSprite("SLBH"));
+                                    break;
+                                case "DIM":
+                                    changeStat(spriteManager.getSprite("DLBH"));
+                                    break;
+                                case "SIC":
+                                    changeStat(spriteManager.getSprite("SLB"));
+                                    break;
+                                case "DIC":
+                                    changeStat(spriteManager.getSprite("DLB"));
+                                    break;
+                            }
+                            inventory.item.GetComponent<SpriteRenderer>().sprite = null;
+                        }
+                        else if (tag == "Placer") //if it is placer
+                        {
+                            if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "M" ||
+                                inventory.item.GetComponent<SpriteRenderer>().sprite.name == "LC" ||
+                                inventory.item.GetComponent<SpriteRenderer>().sprite.name == "CC" ||
+                                inventory.item.GetComponent<SpriteRenderer>().sprite.name == "TLG" ||
+                                inventory.item.GetComponent<SpriteRenderer>().sprite.name == "ESC" ||
+                                inventory.item.GetComponent<SpriteRenderer>().sprite.name == "TKG")
+                            {
+                                manageThing();
+                                inventory.item.GetComponent<SpriteRenderer>().sprite = null;
+                            }
+                        }
+                    }else if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "plate")
+                    {
+                        manageThing();
+
                     }
                     else
                     {
@@ -54,7 +89,7 @@ public class objPlace : MonoBehaviour
                 }
                 else
                 {
-                    if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher with milk" && inventory.isSmoke && inventory.isHanding)
+                    if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher with milk" && inventory.isHanding)
                     {
                         inventory.transform.GetChild(1).SetParent(gameObject.transform);
                         inventory.isHanding = false;
@@ -68,16 +103,18 @@ public class objPlace : MonoBehaviour
                 {
                     if (!parentMachine.isUsing) //if machine is not using
                     {
-                        if (parentMachine.GetComponent<SpriteRenderer>().sprite.name == "Espresso Machine Handle") //Espresso have handle
+                        if (parentMachine.GetComponent<SpriteRenderer>().sprite.name == "Espresso Machine Handle" && tag == "Handle") //Espresso have handle
                         {
                             manageThing(spriteManager.getSprite("Espresso Machine"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Handle old coffee");
                         }
-                        else if (parentMachine.tag == "EspMachine")
+                        else if (parentMachine.tag == "EspMachine" && tag == "Placer")
                         {
-                            GameObject smoke = transform.GetChild(transform.childCount - 1).gameObject;
-                            Destroy(smoke);
-                            inventory.startSmoke();
+                            if(transform.childCount == 2)
+                            {
+                                GameObject smoke = transform.GetChild(transform.childCount - 1).gameObject;
+                                Destroy(smoke);
+                            }
                             takeBack();
                         }
                         else
@@ -92,7 +129,7 @@ public class objPlace : MonoBehaviour
                 }
                 else
                 {
-                    if (place.sprite.name == "Pitcher with milk" && inventory.isSmoke && !inventory.isHanding)
+                    if (place.sprite.name == "Pitcher with milk" && !inventory.isHanding)
                     {
                         place.gameObject.transform.parent.transform.GetChild(1).SetParent(inventory.transform);
                         inventory.isHanding = true;

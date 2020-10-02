@@ -73,8 +73,10 @@
     <Compile Include="Assets\Script\item.cs" />
     <Compile Include="Assets\Script\machine.cs" />
     <Compile Include="Assets\Script\moveCam.cs" />
+    <Compile Include="Assets\Script\musicManager.cs" />
     <Compile Include="Assets\Script\objPlace.cs" />
     <Compile Include="Assets\Script\orderClass.cs" />
+    <Compile Include="Assets\Script\orderShow.cs" />
     <Compile Include="Assets\Script\particle.cs" />
     <Compile Include="Assets\Script\spriteManager.cs" />
     <Reference Include="UnityEngine">

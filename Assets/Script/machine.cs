@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class machine : MonoBehaviour
 {
     public spriteManager spriteManager;
+    public musicManager musicManager;
 
     public string machineName;
     GameObject[] holder;
@@ -18,6 +19,7 @@ public class machine : MonoBehaviour
     float operateTime;
     int indNum;
     float orgOperateTime = 3f;
+    GameObject milkButton;
 
     //Espresso
     public bool isMilk;
@@ -27,9 +29,11 @@ public class machine : MonoBehaviour
 
     float milkTime;
     float orgMilkTime = 4f;
+    Sprite currentSprite;
 
     void Start()
     {
+        milkButton = GameObject.Find("MilkButton").transform.GetChild(0).gameObject;
         machineName = gameObject.tag;
         indNum = transform.childCount; //get child item num
 
@@ -68,6 +72,10 @@ public class machine : MonoBehaviour
             {
                 if (isOperateSingle && operateTime > 0) //single shot
                 {
+                    //if ()
+                    {
+
+                    }
                     isUsing = true;
                     operateTime -= Time.deltaTime;
                 }
@@ -80,6 +88,7 @@ public class machine : MonoBehaviour
                 {
                     holder[0].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Handle with coffee"));
                     gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Grinding Machine");
+                    AudioSource.PlayClipAtPoint(musicManager.getMusic("grinder off"), transform.position);
                     isHandle = false;
                     isOperateSingle = false;
                     isOperateDouble = false;
@@ -105,9 +114,37 @@ public class machine : MonoBehaviour
                 isUsing = true;
                 operateTime -= Time.deltaTime;
             }
-            else if (operateTime <= -2f || operateTime <= 0) //Espress finish
+            else if ((isOperateDouble && operateTime <= -2f) || (isOperateSingle && operateTime <= 0)) //Espress finish
             {
                 gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Espresso Machine Handle");
+
+                //cups
+                currentSprite = holder[2].GetComponent<objPlace>().place.sprite;
+                switch (currentSprite.name)
+                {
+                    case "M":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SIM");
+                        break;
+                    case "LC":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SILC");
+                        break;
+                    case "CC":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SICC");
+                        break;
+                    case "ESC":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SIESC");
+                        break;
+                    case "TLG":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SITLG");
+                        break;
+                    case "TKG":
+                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SITKG");
+                        break;
+                    default:
+                        Debug.Log("Cup lose");
+                        break;
+                }
+
                 isHandle = false;
                 isOperateSingle = false;
                 isOperateDouble = false;
@@ -134,6 +171,7 @@ public class machine : MonoBehaviour
                     {
                         holder[1].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
                         Instantiate(smoke, holder[1].transform);
+                        milkButton.SetActive(false);
                         isPitcher = false;
                         isMilk = false;
                         milkBtn = false;

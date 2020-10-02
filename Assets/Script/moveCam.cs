@@ -6,10 +6,11 @@ public class moveCam : MonoBehaviour
 {
     public GameObject cam;
     public GameObject[] screensObj = new GameObject[4];
+    public GameObject orderUI;
 
     Vector3[] screens = new Vector3[4];
 
-    int screenInd;
+    public int screenInd;
 
     private void Start() //get screen positions
     {
@@ -18,6 +19,18 @@ public class moveCam : MonoBehaviour
         {
             screens[i] = screensObj[i].transform.position;
             screens[i].z -= 10;
+        }
+    }
+
+    private void Update()
+    {
+        if(screenInd == 0)
+        {
+            orderUI.GetComponent<CanvasGroup>().alpha = 1f;
+        }
+        else
+        {
+            orderUI.GetComponent<CanvasGroup>().alpha = 0f;
         }
     }
 

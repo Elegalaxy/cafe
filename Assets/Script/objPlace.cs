@@ -42,7 +42,7 @@ public class objPlace : MonoBehaviour
                         }
                         else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher") //if it is Pitcher
                         {
-                            changeStat(spriteManager.getSprite("Pitcher in steam"));
+                            changeStat(spriteManager.getSprite("Pitcher with milk"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = null;
                         }
                         else if (tag == "Hot Water") //if it is Long Black

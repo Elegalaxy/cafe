@@ -40,7 +40,7 @@ public class objPlace : MonoBehaviour
                         {
                             manageThing(spriteManager.getSprite("Espresso Machine Handle"));
                         }
-                        else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher") //if it is Pitcher
+                        else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher with milk") //if it is Pitcher
                         {
                             changeStat(spriteManager.getSprite("Pitcher with milk"));
                             inventory.item.GetComponent<SpriteRenderer>().sprite = null;

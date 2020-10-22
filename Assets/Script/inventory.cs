@@ -16,8 +16,12 @@ public class inventory : MonoBehaviour
         dis.z = -1f;
         item.transform.position = dis;
     }
+    public string clickItem()// function to return clicking item's name
+    {
+        return item.GetComponent<SpriteRenderer>().sprite.name;
+    }
 
-    public void clickItem(Sprite itemImg)
+    public void clickItem(Sprite itemImg) //function to grab and put items
     {
 
         if (item.GetComponent<SpriteRenderer>().sprite == null)

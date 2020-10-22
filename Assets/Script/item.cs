@@ -20,7 +20,12 @@ public class item : MonoBehaviour
         {
             if (gameObject.GetComponent<SpriteRenderer>().sprite != null)
             {
-                if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Handle" || gameObject.GetComponent<SpriteRenderer>().sprite.name == "Pitcher" || gameObject.GetComponent<SpriteRenderer>().sprite.name == "Plastic Cup")
+                if (inventory.clickItem() == "Milk" && gameObject.GetComponent<SpriteRenderer>().sprite.name == "Pitcher")
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Pitcher with milk");
+                    inventory.clearItem();
+                }
+                else if (gameObject.GetComponent<SpriteRenderer>().sprite.name == "Handle" || gameObject.GetComponent<SpriteRenderer>().sprite.name == "Pitcher" || gameObject.GetComponent<SpriteRenderer>().sprite.name == "Plastic Cup")
                 {
                     inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                     gameObject.GetComponent<SpriteRenderer>().sprite = null;
@@ -36,11 +41,6 @@ public class item : MonoBehaviour
                         //inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                     }
                 }
-
-                else if (gameObject.tag != "Bin")
-                {
-                    inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
-                }
                 else if(gameObject.tag == "Bin")
                 {
                     if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Handle old coffee")
@@ -55,8 +55,9 @@ public class item : MonoBehaviour
                     {
                         inventory.clearItem();
                     }
+                } else {
+                    inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                 }
-
             }
         }
     }

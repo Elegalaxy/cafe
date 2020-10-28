@@ -18,7 +18,9 @@ public class inventory : MonoBehaviour
     }
     public string clickItem()// function to return clicking item's name
     {
-        return item.GetComponent<SpriteRenderer>().sprite.name;
+        if(item.GetComponent<SpriteRenderer>().sprite != null) return item.GetComponent<SpriteRenderer>().sprite.name;
+
+        return "";
     }
 
     public void clickItem(Sprite itemImg) //function to grab and put items

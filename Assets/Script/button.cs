@@ -63,17 +63,15 @@ public class button : MonoBehaviour
                         parentMachine.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Espresso Machine Double");
                         parentMachine.isOperateDouble = true;
                     }
-                }else if (parentMachine.isPitcher)
+                }
+                
+                if (parentMachine.isPitcher)
                 {
                     if (gameObject.name == "MilkButton" && !parentMachine.isMilk)
                     {
                         parentMachine.milkBtn = true;
                         btn.SetActive(true);
                     }
-                }
-                else
-                {
-                    Debug.Log("no handle");
                 }
             }
         }

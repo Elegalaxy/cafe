@@ -8,7 +8,7 @@ public class orderClass : MonoBehaviour
     public class order
     {
         public string[,] orderList;
-        string[] shotsList = { "Single", "Double" };
+        string[] shotsList = { "Single", "Single" }; //double shot
         string[] coffeeList = { "Shot", "Shot Long Black", "Shot Latte", "Shot Mocha", "Shot Cappucinno" };
         string[] tempList = { "Hot", "Cold" };
 

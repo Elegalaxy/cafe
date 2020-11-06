@@ -22,18 +22,24 @@ public class machine : MonoBehaviour
     GameObject milkButton;
 
     //Espresso
-    public bool isMilk;
+    //Milk
     public bool milkBtn;
     public bool isPitcher;
-    public ParticleSystem smoke;
 
     float milkTime;
     float orgMilkTime = 4f;
     Sprite currentSprite;
 
+    //hot water
+    public bool waterBtn;
+    public bool isWaterCup;
+
+    float waterTime;
+    float orgWaterTime = 4f;
+
     void Start()
     {
-        milkButton = GameObject.Find("MilkButton").transform.GetChild(0).gameObject;
+        if(name == "Espresso Machine") milkButton = GameObject.Find("MilkButton").transform.GetChild(0).gameObject;
         machineName = gameObject.tag;
         indNum = transform.childCount; //get child item num
 
@@ -41,9 +47,10 @@ public class machine : MonoBehaviour
         isHandle = false;
         isOperateSingle = false; //single and double shot
         isOperateDouble = false;
-        isMilk = false;
         milkBtn = false;
         isPitcher = false;
+        waterBtn = false;
+        isWaterCup = false;
 
         operateTime = orgOperateTime;
         milkTime = orgMilkTime;
@@ -155,30 +162,49 @@ public class machine : MonoBehaviour
             //milk
             if (holder[1].GetComponent<objPlace>().place.sprite != null)
             {
-                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher") //if have pitcher
+                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher in Steam") //if have pitcher
                 {
                     isPitcher = true;
                 }
 
                 if (isPitcher)
                 {
-                    if (milkTime > 0 && milkBtn) //milk time
-                    {
-                        isMilk = true;
+                    if(milkBtn && milkTime > 0) {
                         milkTime -= Time.deltaTime;
                     }
                     else if (milkTime <= 0) //when finish steam
                     {
                         holder[1].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
-                        Instantiate(smoke, holder[1].transform);
                         milkButton.SetActive(false);
                         isPitcher = false;
-                        isMilk = false;
                         milkBtn = false;
-                        milkTime = orgMilkTime;
                     }
                 }
             }
+
+            //hot water
+            if(holder[3].GetComponent<objPlace>().place.sprite != null && holder[1].GetComponent<objPlace>().place.sprite.name == "Plastic Cup") {
+                if(waterBtn && waterTime > 0) {
+                    waterTime -= Time.deltaTime;
+                }else if(waterTime <= 0) {
+                    holder[3].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
+                    //milkButton.SetActive(false);
+                    isWaterCup = false;
+                    waterBtn = false;
+                }
+            }
         }
+    }
+
+    public void startMilk() {
+        milkTime = orgMilkTime;
+        milkButton.SetActive(true);
+        milkBtn = true;
+    }
+
+    public void startWater() {
+        waterTime = orgWaterTime;
+        //milkButton.SetActive(true);
+        waterBtn = true;
     }
 }

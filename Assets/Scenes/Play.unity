@@ -1235,10 +1235,8 @@ MonoBehaviour:
   isOperateSingle: 0
   isOperateDouble: 0
   isHandle: 0
-  isMilk: 0
   milkBtn: 0
   isPitcher: 0
-  smoke: {fileID: 19800000, guid: 5a97962f7d5ba4df0823334b52c7c02c, type: 3}
 --- !u!1 &396983575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,7 +1976,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1710562648}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &653428513
 CircleCollider2D:
@@ -2505,7 +2503,7 @@ Transform:
   m_Children:
   - {fileID: 1152380959}
   m_Father: {fileID: 1710562648}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &723587595
 MonoBehaviour:
@@ -3878,7 +3876,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1152380959}
   - component: {fileID: 1152380961}
-  - component: {fileID: 1152380960}
   m_Layer: 0
   m_Name: Milk Btn
   m_TagString: Milk Button
@@ -3900,18 +3897,6 @@ Transform:
   m_Father: {fileID: 723587594}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1152380960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152380958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88a923c48296774e81b50b21535243f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1152380961
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4072,7 +4057,7 @@ Transform:
   m_Children:
   - {fileID: 1464271644}
   m_Father: {fileID: 1710562648}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1276553301
 BoxCollider2D:
@@ -6103,10 +6088,10 @@ Transform:
   - {fileID: 445394052}
   - {fileID: 101872771}
   - {fileID: 1917141796}
+  - {fileID: 1276553300}
   - {fileID: 653428512}
   - {fileID: 1775132761}
   - {fileID: 723587594}
-  - {fileID: 1276553300}
   m_Father: {fileID: 150705455}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6129,10 +6114,8 @@ MonoBehaviour:
   isOperateSingle: 0
   isOperateDouble: 0
   isHandle: 0
-  isMilk: 0
   milkBtn: 0
   isPitcher: 0
-  smoke: {fileID: 19800000, guid: 5a97962f7d5ba4df0823334b52c7c02c, type: 3}
 --- !u!212 &1710562650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6465,7 +6448,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1710562648}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &1775132762
 CircleCollider2D:

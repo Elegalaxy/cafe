@@ -67,10 +67,9 @@ public class button : MonoBehaviour
                 
                 if (parentMachine.isPitcher)
                 {
-                    if (gameObject.name == "MilkButton" && !parentMachine.isMilk)
+                    if (gameObject.name == "MilkButton" && !parentMachine.milkBtn)
                     {
-                        parentMachine.milkBtn = true;
-                        btn.SetActive(true);
+                        parentMachine.startMilk();
                     }
                 }
             }

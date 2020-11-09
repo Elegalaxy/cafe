@@ -43,44 +43,23 @@ public class objPlace : MonoBehaviour
                         else if (tag == "Milk" && inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Pitcher with milk") //if it is Pitcher
                         {
                             changeStat(spriteManager.getSprite("Pitcher in Steam"));
-                            inventory.item.GetComponent<SpriteRenderer>().sprite = null;
                         }
-                        else if (tag == "Hot Water") //if it is Long Black
+                        else if (tag == "Placer" || tag == "Hot Water") //if it is placer
                         {
-                            switch (inventory.item.GetComponent<SpriteRenderer>().sprite.name)
-                            {
-                                case "SIM":
-                                    changeStat(spriteManager.getSprite("SLBH"));
-                                    break;
-                                case "DIM":
-                                    changeStat(spriteManager.getSprite("DLBH"));
-                                    break;
-                                case "SIC":
-                                    changeStat(spriteManager.getSprite("SLB"));
-                                    break;
-                                case "DIC":
-                                    changeStat(spriteManager.getSprite("DLB"));
-                                    break;
-                            }
-                            inventory.item.GetComponent<SpriteRenderer>().sprite = null;
-                        }
-                        else if (tag == "Placer") //if it is placer
-                        {
-                            if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "M" ||
+                            /*if(inventory.item.GetComponent<SpriteRenderer>().sprite.name == "M" || //Bug: everything could be put in
                                 inventory.item.GetComponent<SpriteRenderer>().sprite.name == "LC" ||
                                 inventory.item.GetComponent<SpriteRenderer>().sprite.name == "CC" ||
                                 inventory.item.GetComponent<SpriteRenderer>().sprite.name == "TLG" ||
                                 inventory.item.GetComponent<SpriteRenderer>().sprite.name == "ESC" ||
                                 inventory.item.GetComponent<SpriteRenderer>().sprite.name == "TKG")
                             {
-                                manageThing();
-                                inventory.item.GetComponent<SpriteRenderer>().sprite = null;
-                            }
+                                
+                            }*/
+                            manageThing(); //put cup into placer
                         }
                     }else if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "plate")
                     {
                         manageThing();
-
                     }
                     else
                     {
@@ -143,6 +122,7 @@ public class objPlace : MonoBehaviour
     public void changeStat(Sprite changeImg)
     {
         place.sprite = changeImg;
+        inventory.item.GetComponent<SpriteRenderer>().sprite = null;
     }
 
     void manageThing() //use to place item

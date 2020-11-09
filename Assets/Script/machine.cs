@@ -32,7 +32,6 @@ public class machine : MonoBehaviour
 
     //hot water
     public bool waterBtn;
-    public bool isWaterCup;
 
     float waterTime;
     float orgWaterTime = 4f;
@@ -50,10 +49,10 @@ public class machine : MonoBehaviour
         milkBtn = false;
         isPitcher = false;
         waterBtn = false;
-        isWaterCup = false;
 
         operateTime = orgOperateTime;
         milkTime = orgMilkTime;
+        waterTime = orgWaterTime;
 
         holder = new GameObject[indNum]; //initial holder array
 
@@ -183,13 +182,19 @@ public class machine : MonoBehaviour
             }
 
             //hot water
-            if(holder[3].GetComponent<objPlace>().place.sprite != null && holder[1].GetComponent<objPlace>().place.sprite.name == "Plastic Cup") {
+            if(holder[3].GetComponent<objPlace>().place.sprite != null) {
                 if(waterBtn && waterTime > 0) {
                     waterTime -= Time.deltaTime;
-                }else if(waterTime <= 0) {
-                    holder[3].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Pitcher with milk"));
+                } else if(waterTime <= 0) {
+                    switch(holder[3].GetComponent<objPlace>().place.sprite.name) {
+                        case "SIM":
+                            holder[3].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Long Black"));
+                            Debug.Log("check");
+                            break;
+                        default: //rmb to add other drink which require water
+                            break;
+                    }
                     //milkButton.SetActive(false);
-                    isWaterCup = false;
                     waterBtn = false;
                 }
             }

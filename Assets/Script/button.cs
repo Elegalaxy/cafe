@@ -72,6 +72,10 @@ public class button : MonoBehaviour
                         parentMachine.startMilk();
                     }
                 }
+
+                if(gameObject.name == "WaterButton") {
+                    parentMachine.startWater();
+                }
             }
         }
     }

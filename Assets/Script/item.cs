@@ -41,9 +41,6 @@ public class item : MonoBehaviour
                         //inventory.clickItem(gameObject.GetComponent<SpriteRenderer>().sprite);
                     }
                 }
-                else if(gameObject.name == "Choco Powder") {
-
-                }
                 else if(gameObject.tag == "Bin")
                 {
                     if (inventory.item.GetComponent<SpriteRenderer>().sprite.name == "Handle old coffee")

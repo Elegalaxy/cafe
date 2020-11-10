@@ -8,13 +8,14 @@ public class orderShow : MonoBehaviour
     public orderClass orderClass;
     public GameObject[] orders;
 
-    float orderTime = 2f;
-    float[] orderLast = {0f, 0f, 0f, 0f};
+    float orderTime = 2f; //max time for order
+    float[] orderLast = {0f, 0f, 0f, 0f}; //record remaining time for each order
     string[] orderList;
 
     void Start()
     {
         orders = new GameObject[transform.childCount];
+        orderList = new string[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
             orders[i] = transform.GetChild(i).gameObject;
@@ -37,7 +38,9 @@ public class orderShow : MonoBehaviour
                 {
                     string[,] currentOrder;
                     currentOrder = orderClass.getOrder();
-                    orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1] + " " + currentOrder[0, 2];
+                    //orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1] + " " + currentOrder[0, 2];
+                    orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1];
+                    orderList[i] = orders[i].GetComponent<Text>().text;
                     orderLast[i] = 3f;
 
                     /*for (int j = 0; j < currentOrder.GetLength(0); j++)
@@ -63,5 +66,9 @@ public class orderShow : MonoBehaviour
                 //Debug.Log("Order Gone");
             }
         }
+    }
+
+    public string[] get_orderList() {
+        return orderList;
     }
 }

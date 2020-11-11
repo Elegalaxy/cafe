@@ -7,8 +7,10 @@ public class orderShow : MonoBehaviour
 {
     public orderClass orderClass;
     public GameObject[] orders;
+    public orderPlacer orderPlacers;
 
-    float orderTime = 2f; //max time for order
+    int score = 0;
+    float orderTime = 5f; //max time for order
     float[] orderLast = {0f, 0f, 0f, 0f}; //record remaining time for each order
     string[] orderList;
 
@@ -38,17 +40,22 @@ public class orderShow : MonoBehaviour
                 {
                     string[,] currentOrder;
                     currentOrder = orderClass.getOrder();
+                    
                     //orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1] + " " + currentOrder[0, 2];
                     orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1];
-                    orderList[i] = orders[i].GetComponent<Text>().text;
-                    orderLast[i] = 3f;
+
+                    //translate order name and return to placer
+                    //orderList[i] = orders[i].GetComponent<Text>().text;
+                    orderList[i] = translateOrder(orders[i].GetComponent<Text>().text);
+                    orderPlacers.updateList();
+                    orderLast[i] = 10f;
 
                     /*for (int j = 0; j < currentOrder.GetLength(0); j++)
                     {
                         orders[i].GetComponent<Text>().text += currentOrder[j, 0] + " " + currentOrder[j, 1] + " " + currentOrder[j, 2];
                     }*/
 
-                    orderTime = 1f;
+                    orderTime = 5f;
                     break;
                 }
             }
@@ -68,7 +75,44 @@ public class orderShow : MonoBehaviour
         }
     }
 
+    string translateOrder(string order) {
+        switch(order) {
+            case "Hot Long Black":
+                return "Long Black";
+            case "Hot Latte":
+                return "Latte";
+            case "Hot Mocha":
+                return "Mocha";
+            case "Hot Cappucinno":
+                return "Cappucinno";
+            case "Hot Chocolate":
+                return "Hot Chocolate";
+            case "Ice Long Black":
+                return "Ice Long Black";
+            case "Ice Latte":
+                return "Ice Latte";
+            case "Ice Mocha":
+                return "Ice Mocha";
+            case "Ice Cappucinno":
+                return "Ice Cappucinno";
+            case "Ice Chocolate":
+                return "Ice Chocolate";
+            case "Hot Shot":
+                return "Shot";
+            default:
+                return " ";
+        }
+    }
+
     public string[] get_orderList() {
         return orderList;
+    }
+
+    public void correctOrder(int ind) {
+        orders[ind].GetComponent<Text>().text = "";
+        orderList[ind] = "";
+        orderPlacers.updateList();
+        score++;
+        Debug.Log(score);
     }
 }

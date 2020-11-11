@@ -185,11 +185,10 @@ public class machine : MonoBehaviour
             if(holder[3].GetComponent<objPlace>().place.sprite != null) {
                 if(waterBtn && waterTime > 0) {
                     waterTime -= Time.deltaTime;
-                } else if(waterTime <= 0) {
+                } else if(waterBtn && waterTime <= 0) {
                     switch(holder[3].GetComponent<objPlace>().place.sprite.name) {
                         case "SIM":
                             holder[3].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Long Black"));
-                            Debug.Log("check");
                             break;
                         default: //rmb to add other drink which require water
                             break;

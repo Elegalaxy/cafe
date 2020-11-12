@@ -108,10 +108,12 @@ public class objPlace : MonoBehaviour
                 }
                 else
                 {
-                    if (place.sprite.name == "Pitcher with milk" && !inventory.isHanding)
+                    if (!inventory.isHanding && place.sprite != null)
                     {
-                        place.gameObject.transform.parent.transform.GetChild(1).SetParent(inventory.transform);
-                        inventory.isHanding = true;
+                        if(place.sprite.name == "Pitcher with milk") {
+                            place.gameObject.transform.parent.transform.GetChild(1).SetParent(inventory.transform);
+                            inventory.isHanding = true;
+                        }
                     }
                     takeBack();
                 }

@@ -7,6 +7,7 @@ public class orderShow : MonoBehaviour
 {
     public orderClass orderClass;
     public GameObject[] orders;
+    public GameObject scoreBoard;
     public orderPlacer orderPlacers;
 
     int score = 0;
@@ -112,7 +113,12 @@ public class orderShow : MonoBehaviour
         orders[ind].GetComponent<Text>().text = "";
         orderList[ind] = "";
         orderPlacers.updateList();
-        score++;
+        score += 100;
+        updateScore(score);
         Debug.Log(score);
+    }
+
+    void updateScore(int s) {
+        scoreBoard.GetComponent<Text>().text = "Score: " + s.ToString();
     }
 }

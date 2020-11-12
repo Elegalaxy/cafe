@@ -5779,6 +5779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orderClass: {fileID: 447140142}
   orders: []
+  scoreBoard: {fileID: 1633847811}
   orderPlacers: {fileID: 612018179}
 --- !u!225 &1639357613
 CanvasGroup:

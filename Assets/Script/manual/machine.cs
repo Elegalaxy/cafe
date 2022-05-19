@@ -62,13 +62,13 @@ public class machine : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (machineName == "Grinder") //if grinder
         {
-            if (holder[0].GetComponent<objPlace>().place.sprite != null)
+            if (holder[0].GetComponent<objPlace>().getPlace().sprite != null)
             {
-                if (holder[0].GetComponent<objPlace>().place.sprite.name == "Handle") //if have handle
+                if (holder[0].GetComponent<objPlace>().getPlace().sprite.name == "Handle") //if have handle
                 {
                     isHandle = true;
                 }
@@ -125,26 +125,26 @@ public class machine : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = spriteManager.getSprite("Espresso Machine Handle");
 
                 //cups
-                currentSprite = holder[2].GetComponent<objPlace>().place.sprite;
+                currentSprite = holder[2].GetComponent<objPlace>().getPlace().sprite;
                 switch (currentSprite.name)
                 {
                     case "M":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SIM");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SIM");
                         break;
                     case "LC":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SILC");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SILC");
                         break;
                     case "CC":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SICC");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SICC");
                         break;
                     case "ESC":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SIESC");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SIESC");
                         break;
                     case "TLG":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SITLG");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SITLG");
                         break;
                     case "TKG":
-                        holder[2].GetComponent<objPlace>().place.sprite = spriteManager.getSprite("SITKG");
+                        holder[2].GetComponent<objPlace>().getPlace().sprite = spriteManager.getSprite("SITKG");
                         break;
                     default:
                         Debug.Log("Cup lose");
@@ -159,9 +159,9 @@ public class machine : MonoBehaviour
             }
 
             //milk
-            if (holder[1].GetComponent<objPlace>().place.sprite != null)
+            if (holder[1].GetComponent<objPlace>().getPlace().sprite != null)
             {
-                if (holder[1].GetComponent<objPlace>().place.sprite.name == "Pitcher in Steam") //if have pitcher
+                if (holder[1].GetComponent<objPlace>().getPlace().sprite.name == "Pitcher in Steam") //if have pitcher
                 {
                     isPitcher = true;
                 }
@@ -182,11 +182,11 @@ public class machine : MonoBehaviour
             }
 
             //hot water
-            if(holder[3].GetComponent<objPlace>().place.sprite != null) {
+            if(holder[3].GetComponent<objPlace>().getPlace().sprite != null) {
                 if(waterBtn && waterTime > 0) {
                     waterTime -= Time.deltaTime;
                 } else if(waterBtn && waterTime <= 0) {
-                    switch(holder[3].GetComponent<objPlace>().place.sprite.name) {
+                    switch(holder[3].GetComponent<objPlace>().getPlace().sprite.name) {
                         case "SIM":
                             //holder[3].GetComponent<objPlace>().changeStat(spriteManager.getSprite("Long Black"));
                             break;
@@ -198,7 +198,7 @@ public class machine : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 
     public void startMilk() {
         milkTime = orgMilkTime;

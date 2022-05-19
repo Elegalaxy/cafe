@@ -5,53 +5,54 @@ using UnityEngine.XR;
 
 public class inventory : MonoBehaviour
 {
-    public GameObject item;
+    GameObject item;
     public Camera cam;
-    public Vector3 dis;
-    public bool isHanding = false;
+    Vector3 dis;
+    bool isHanding = false;
 
     void Update()
     {
-        dis = cam.ScreenToWorldPoint(Input.mousePosition);
-        dis.z = -1f;
-        item.transform.position = dis;
-    }
-    public string clickItem()// function to return clicking item's name
-    {
-        if(item.GetComponent<SpriteRenderer>().sprite != null) return item.GetComponent<SpriteRenderer>().sprite.name;
-
-        return "";
-    }
-
-    public void clickItem(Sprite itemImg) //function to grab and put items
-    {
-
-        if (item.GetComponent<SpriteRenderer>().sprite == null)
-        {
-            item.GetComponent<SpriteRenderer>().sprite = itemImg;
-        }
-        else if (item.GetComponent<SpriteRenderer>().sprite == itemImg)
-        {
-            item.GetComponent<SpriteRenderer>().sprite = null;
-        }
-        else
-        {
-            Debug.Log("hand is full");
+        if(isHanding) {
+            dis = cam.ScreenToWorldPoint(Input.mousePosition);
+            dis.z = -1f;
+            item.transform.position = dis;
         }
     }
 
-    public Sprite getItem()
+    public GameObject clickItem(GameObject i) //function to grab and put items
     {
-        return item.GetComponent<SpriteRenderer>().sprite;
+        int count = transform.childCount;
+
+        if(count == 0) { // Hand no item
+            Instantiate(i, transform);
+            item = transform.GetChild(0).gameObject;
+            item.transform.localScale = new Vector3(1f, 1f, 1f);
+            isHanding = true;
+        } else if(count != 0) { // If holding something
+            if(i.GetComponent<objPlace>() == null) { // If its not holder
+                clearItem(); // Remove item
+            }
+
+            if(i.GetComponent<objPlace>() != null) { // There is a place holder
+                return item; // Return item to holder
+            }
+        }
+
+        return null;
     }
 
     public void clearItem()
     {
-        item.GetComponent<SpriteRenderer>().sprite = null;
+        isHanding = false;
+        Destroy(transform.GetChild(0).gameObject);
+        item = null;
     }
 
-    public void changeSprite(Sprite img)
-    {
-        item.GetComponent<SpriteRenderer>().sprite = img;
+    public bool getHandle() {
+        return isHanding;
+    }
+
+    public Vector3 getPos() {
+        return dis;
     }
 }

@@ -17,9 +17,9 @@ public class particle : MonoBehaviour
 
     private void Update()
     {
-        if (inventory.isHanding)
+        if (inventory.getHandle())
         {
-            gameObject.transform.position = transform.parent.GetComponent<inventory>().dis;
+            gameObject.transform.position = transform.parent.GetComponent<inventory>().getPos();
         }
     }
 }

@@ -18,10 +18,10 @@ public class orderPlacer : MonoBehaviour
 
     private void Update() {
         for(int i = 0; i < placer.Length; i++) {
-            if(placer[i].GetComponent<objPlace>().place.sprite != null) {
+            if(placer[i].transform.childCount != 0) {
                 if(checkOrder(i)) {
                     order.correctOrder(i);
-                    placer[i].place.sprite = null;
+                    placer[i].clearItem();
                 }
             }
         }
@@ -32,8 +32,8 @@ public class orderPlacer : MonoBehaviour
     }
 
     bool checkOrder(int ind) {
-        //Debug.Log(placer[ind].GetComponent<objPlace>().place.sprite.name);
-        if(orderList[ind] == placer[ind].GetComponent<objPlace>().place.sprite.name) {
+        Debug.Log(placer[ind].transform.GetChild(0).name);
+        if(orderList[ind] == placer[ind].transform.GetChild(0).name) {
             return true;
         }
         return false;

@@ -24,6 +24,8 @@ TagManager:
   - Milk Button
   - Placer
   - MusicManager
+  - Screen
+  - OrderUI
   layers:
   - Default
   - TransparentFX

@@ -9,41 +9,31 @@ public class objPlace : MonoBehaviour
     inventory inventory;
     List<item> items;
 
-    public SpriteRenderer place;
-
     private void Start()
     {
-        place = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>(); //holder
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<inventory>();
     }
 
-    private void OnMouseOver()
+    void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && inventory.transform.childCount != 0) // When hand got item
         {
-            if(inventory.item.GetComponent<SpriteRenderer>().sprite != null) //if hand got thing
-            {
-
+            GameObject item = inventory.clickItem(gameObject);
+            if(item != null && transform.childCount == 0) { // Get item and put in child
+                manageThing(item);
+            } else {
+                Debug.Log("Full");
             }
         }
     }
 
-    void manageThing() //use to place item
+    void manageThing(GameObject item) //use to place item
     {
-        if (place.sprite != null)
-        {
-            Debug.Log("The place is full");
-        }
-        else
-        {
-            place.sprite = inventory.getItem(); //place item
-            inventory.item.GetComponent<SpriteRenderer>().sprite = null; //set our hand to nothing
-        }
+        Instantiate(item, transform);
+        transform.GetChild(0).localScale = new Vector3(1f, 1f, 1f); // Reset scale
     }
 
-    void takeBack()
-    {
-        inventory.item.GetComponent<SpriteRenderer>().sprite = place.sprite; //take item back
-        place.sprite = null;
+    public void clearItem() {
+        Destroy(transform.GetChild(0).gameObject);
     }
 }

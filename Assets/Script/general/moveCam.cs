@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class moveCam : MonoBehaviour
 {
-    public GameObject cam;
-    public GameObject[] screensObj = new GameObject[4];
-    public GameObject orderUI;
+    GameObject cam;
+    GameObject[] screensObj = new GameObject[4];
+    GameObject orderUI;
 
     Vector3[] screens = new Vector3[4];
 
-    public int screenInd;
+    int screenInd;
 
     private void Start() //get screen positions
     {
+        // Find objs
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
+        screensObj = GameObject.FindGameObjectsWithTag("Screen");
+        orderUI = GameObject.FindGameObjectWithTag("OrderUI");
+
         screenInd = 0;
         for (int i = 0; i < 4; i++)
         {

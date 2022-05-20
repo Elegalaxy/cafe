@@ -31,7 +31,6 @@ public class orderShow : MonoBehaviour
         if (orderTime > 0)
         {
             orderTime -= Time.deltaTime;
-            //Debug.Log(orderTime);
         }
         else
         {
@@ -39,15 +38,14 @@ public class orderShow : MonoBehaviour
             {
                 if (orders[i].GetComponent<Text>().text == "")
                 {
-                    string[,] currentOrder;
+                    string[] currentOrder;
                     currentOrder = orderClass.getOrder();
                     
-                    //orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1] + " " + currentOrder[0, 2];
-                    orders[i].GetComponent<Text>().text += currentOrder[0, 0] + " " + currentOrder[0, 1];
+                    for(int j = 0; j < currentOrder.Length; j++) {
+                        orders[i].GetComponent<Text>().text += currentOrder[j] + "\n";
+                    }
 
-                    //translate order name and return to placer
-                    //orderList[i] = orders[i].GetComponent<Text>().text;
-                    orderList[i] = translateOrder(orders[i].GetComponent<Text>().text);
+                    orderList[i] = orders[i].GetComponent<Text>().text;
                     orderPlacers.updateList();
                     orderLast[i] = 10f;
 
@@ -76,7 +74,7 @@ public class orderShow : MonoBehaviour
         }
     }
 
-    string translateOrder(string order) {
+    /*string translateOrder(string order) {
         switch(order) {
             case "Hot Long Black":
                 return "Long Black";
@@ -103,7 +101,7 @@ public class orderShow : MonoBehaviour
             default:
                 return " ";
         }
-    }
+    }*/
 
     public string[] get_orderList() {
         return orderList;

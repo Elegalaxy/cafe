@@ -12,13 +12,13 @@ public class orderPlacer : MonoBehaviour
     private void Start() {
         placer = new objPlace[4];
         for(int i = 0; i < transform.childCount; i++) {
-            if(transform.GetChild(i).GetComponent<objPlace>() != null) placer[i] = transform.GetChild(i).GetComponent<objPlace>();
+            placer[i] = transform.GetChild(i).GetChild(0).GetComponent<objPlace>();
         }
     }
 
     private void Update() {
         for(int i = 0; i < placer.Length; i++) {
-            if(placer[i].transform.childCount != 0) {
+            if(placer[i].GetComponent<objPlace>().getName("item") != "") {
                 if(checkOrder(i)) {
                     order.correctOrder(i);
                     placer[i].clearItem();
@@ -32,8 +32,14 @@ public class orderPlacer : MonoBehaviour
     }
 
     bool checkOrder(int ind) {
-        Debug.Log(placer[ind].transform.GetChild(0).name);
-        if(orderList[ind] == placer[ind].transform.GetChild(0).name) {
+        objPlace item = placer[ind].GetComponent<objPlace>();
+        string name = item.getName("item");
+
+        if(item.getName("holder") != "") {
+            name = item.getName("holder");
+        }
+
+        if(orderList[ind] == name) {
             return true;
         }
         return false;

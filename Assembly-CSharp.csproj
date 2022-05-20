@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Assets\Script\manual\button.cs" />
     <Compile Include="Assets\Script\general\particle.cs" />
-    <Compile Include="Assets\Script\item.cs" />
     <Compile Include="Assets\Script\order\orderShow.cs" />
     <Compile Include="Assets\Script\manager\Scenes.cs" />
     <Compile Include="Assets\Script\general\objPlace.cs" />
@@ -66,11 +65,12 @@
     <Compile Include="Assets\Script\manager\musicManager.cs" />
     <Compile Include="Assets\Script\general\moveCam.cs" />
     <Compile Include="Assets\Script\order\orderClass.cs" />
+    <Compile Include="Assets\Script\general\bin.cs" />
     <Compile Include="Assets\Script\menu\PauseMenu.cs" />
     <Compile Include="Assets\Script\general\inventory.cs" />
     <Compile Include="Assets\Script\manager\spriteManager.cs" />
     <Compile Include="Assets\Script\order\orderPlacer.cs" />
-    <Compile Include="Assets\Script\general\bin.cs" />
+    <Compile Include="Assets\Script\general\item.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

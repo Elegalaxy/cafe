@@ -7,33 +7,50 @@ public class objPlace : MonoBehaviour
 {
     //this script is for placing object
     inventory inventory;
-    List<item> items;
+    GameObject holder;
+
+    string item_name = "", holder_name = "";
 
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<inventory>();
+        holder = transform.GetChild(0).gameObject;
     }
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && inventory.transform.childCount != 0) // When hand got item
+        if (Input.GetMouseButtonDown(0)) // When hand got item
         {
-            GameObject item = inventory.clickItem(gameObject);
-            if(item != null && transform.childCount == 0) { // Get item and put in child
-                manageThing(item);
-            } else {
-                Debug.Log("Full");
+            if(inventory.getHandle()) {
+                GameObject item = inventory.transform.GetChild(0).gameObject;
+                GameObject hold = item.transform.GetChild(0).gameObject;
+                manageThing(item, hold);
             }
         }
     }
 
-    void manageThing(GameObject item) //use to place item
+    void manageThing(GameObject item, GameObject hold) //use to place item
     {
-        Instantiate(item, transform);
-        transform.GetChild(0).localScale = new Vector3(1f, 1f, 1f); // Reset scale
+        GetComponent<SpriteRenderer>().sprite = item.GetComponent<SpriteRenderer>().sprite;
+        holder.GetComponent<SpriteRenderer>().sprite = hold.GetComponent<SpriteRenderer>().sprite;
+
+        item_name = item.GetComponent<item>().item_name;
+        holder_name = item.GetComponent<item>().getHolderName();
     }
 
     public void clearItem() {
-        Destroy(transform.GetChild(0).gameObject);
+        GetComponent<SpriteRenderer>().sprite = null;
+        holder.GetComponent<SpriteRenderer>().sprite = null;
+        item_name = "";
+        holder_name = "";
+    }
+
+    public string getName(string type) {
+        if(type == "item")
+            return item_name;
+        else if(type == "holder")
+            return holder_name;
+
+        return "";
     }
 }
